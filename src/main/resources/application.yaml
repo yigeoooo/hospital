@@ -1,0 +1,8 @@
+server:
+  port:8081
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://198.44.179.118:3306/hospital_system_logic
+    username: root
+    password: WJY20011219
