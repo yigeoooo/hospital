@@ -3,6 +3,6 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://198.44.179.118:3306/hospital_system_logic
+    url: jdbc:mysql://198.44.179.118:3306/saas
     username: root
     password: WJY20011219
