@@ -38,7 +38,7 @@ public class LoginController {
         //返回给前端判断值
         return bo;
     }
-    //测试镜像
+    //测试镜像1.0.0
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
         return "hello";
