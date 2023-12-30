@@ -1,7 +1,8 @@
-package com.demo.controller;
+package com.hospital.modual.login.controller;
 
-import com.demo.pojo.entity.UserEntity;
-import com.demo.service.LoginService;
+import com.hospital.common.pojo.form.BaseForm;
+import com.hospital.modual.login.pojo.entity.UserEntity;
+import com.hospital.modual.login.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 登录Controller层，负责处理登录推出等相关操作
  */
 @RestController
-@RequestMapping("/saas")
+@RequestMapping("/saas/root")
 @Slf4j
 //@Slf4j,日志注解，提供日志api
 //@RestController，交互层注解，说明此类专门用于与前端交互
@@ -30,11 +31,11 @@ public class LoginController {
      */
     //@RequestMapping,映射路径，/login是方法路径，method指访问方法，如get方法，post方法等
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public boolean login(@RequestBody UserEntity userEntity) {
+    public boolean login(@RequestBody BaseForm baseForm) {
         //@RequestBody,专门用于post请求，将前端传递的值封装成UserEntity对象，注意前端传值得属性必须要和
         //UserEntity得属性名一摸一样，否咋无法接收到值
-        log.info("入参：{}", userEntity);
-        boolean bo = loginService.login(userEntity);
+        log.info("入参：{}", baseForm);
+        boolean bo = loginService.login(baseForm);
         //返回给前端判断值
         return bo;
     }

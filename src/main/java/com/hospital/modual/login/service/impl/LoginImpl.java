@@ -1,8 +1,9 @@
-package com.demo.service.impl;
+package com.hospital.modual.login.service.impl;
 
-import com.demo.mapper.LoginMapper;
-import com.demo.pojo.entity.UserEntity;
-import com.demo.service.LoginService;
+import com.hospital.common.pojo.form.BaseForm;
+import com.hospital.modual.login.mapper.LoginMapper;
+import com.hospital.modual.login.pojo.entity.UserEntity;
+import com.hospital.modual.login.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,13 +24,13 @@ public class LoginImpl implements LoginService {
 
     /**
      * 登陆操作
-     * @param userEntity
+     * @param baseForm
      * @return boolean
      */
     @Override
-    public boolean login(UserEntity userEntity) {
+    public boolean login(BaseForm baseForm) {
         //调用mapper层方法，验证登录
-        Integer count = loginMapper.login(userEntity.getUserId(), userEntity.getPassword());
+        Integer count = loginMapper.login(baseForm.getId(), baseForm.getPassword());
         if (count != 0) {
             //如果查询返回不是0，说明存在用户，返回true
             return true;

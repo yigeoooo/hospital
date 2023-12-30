@@ -1,4 +1,4 @@
-package com.demo.pojo.entity;
+package com.hospital.modual.login.pojo.entity;
 
 import lombok.Data;
 
@@ -15,7 +15,7 @@ public class UserEntity {
     /**
      * 用户名
      */
-    private String userId;
+    private String rootId;
     /**
      * 密码
      */

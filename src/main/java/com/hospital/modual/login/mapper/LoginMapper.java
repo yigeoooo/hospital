@@ -1,4 +1,4 @@
-package com.demo.mapper;
+package com.hospital.modual.login.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,7 +12,7 @@ public interface LoginMapper {
 
     //@Param 别名，多个参数接收需要起别名，一般和参数名一样
     //@select 指查询
-    @Select("select count(*) from user where user_id = #{userId} and password = #{password}")
-    Integer login(@Param("userId") String userId, @Param("password") String password);
+    @Select("select count(*) from root where root_id = #{rootId} and password = #{password}")
+    Integer login(@Param("rootId") String userId, @Param("password") String password);
 
 }
