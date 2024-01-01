@@ -32,4 +32,9 @@ public class DoctorEntity {
      */
     @TableLogic
     private String isDeleted;
+
+    /**
+     * 状态，1开启，0关闭
+     */
+    private boolean status;
 }
