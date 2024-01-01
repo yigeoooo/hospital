@@ -12,7 +12,7 @@ public interface LoginMapper {
 
     //@Param 别名，多个参数接收需要起别名，一般和参数名一样
     //@select 指查询
-    @Select("select count(*) from root where root_id = #{rootId} and password = #{password} and status = '1'")
+    @Select("select count(*) from root where root_id = #{rootId} and password = #{password} and status = '1' and is_deleted = '0'")
     Integer login(@Param("rootId") String userId, @Param("password") String password);
 
 }

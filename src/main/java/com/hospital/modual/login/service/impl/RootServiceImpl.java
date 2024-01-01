@@ -26,8 +26,8 @@ public class RootServiceImpl extends ServiceImpl<RootMapper, UserEntity> impleme
 
     @Override
     public Page<UserEntity> page(RootForm rootForm) {
-        Page page = new Page(rootForm.getPage(), rootForm.getSize());
-        QueryWrapper query = new QueryWrapper();
+        Page<UserEntity> page = new Page(rootForm.getPage(), rootForm.getSize());
+        QueryWrapper<UserEntity> query = new QueryWrapper();
         String id = rootForm.getId();
         String rootId = rootForm.getRootId();
         //参数检验，拼接过滤查询条件
@@ -38,7 +38,7 @@ public class RootServiceImpl extends ServiceImpl<RootMapper, UserEntity> impleme
             query.eq("root_id", rootId);
         }
         query.eq("is_deleted", "0");
-        Page pages = rootMapper.page(page, query);
+        Page<UserEntity> pages = rootMapper.page(page, query);
         return pages;
     }
 
