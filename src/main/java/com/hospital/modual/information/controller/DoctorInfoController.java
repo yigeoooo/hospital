@@ -62,4 +62,13 @@ public class DoctorInfoController {
         return ResultInfo.build(doctorInfoIService.edit(doctorInfoEditForm));
     }
 
+    /**
+     * 查询总数
+     * @return ResultInfo
+     */
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public ResultInfo<Long> count() {
+        return ResultInfo.build(doctorInfoIService.count());
+    }
+
 }

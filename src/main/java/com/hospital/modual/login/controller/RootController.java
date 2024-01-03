@@ -72,4 +72,13 @@ public class RootController {
     public ResultInfo edit(@RequestBody RootForm rootForm) {
         return ResultInfo.build(rootIService.edit(rootForm));
     }
+
+    /**
+     * 查询总数
+     * @return ResultInfo
+     */
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public ResultInfo<Long> count() {
+        return ResultInfo.build(rootIService.count());
+    }
 }

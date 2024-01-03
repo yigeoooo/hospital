@@ -78,4 +78,13 @@ public class PatientController {
     public ResultInfo edit(@RequestBody PatientForm PatientForm) {
         return ResultInfo.build(patientIService.edit(PatientForm));
     }
+
+    /**
+     * 查询总数
+     * @return ResultInfo
+     */
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public ResultInfo<Long> count() {
+        return ResultInfo.build(patientIService.count());
+    }
 }
