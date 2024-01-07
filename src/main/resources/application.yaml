@@ -1,6 +1,8 @@
 server:
   port: 8090
 spring:
+  main:
+    allow-circular-references: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.109.49.39:3306/SAAS
