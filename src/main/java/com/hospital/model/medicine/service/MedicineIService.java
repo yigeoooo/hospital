@@ -29,7 +29,7 @@ public interface MedicineIService extends IService<MedicineEntity> {
 
     /**
      * 根据id删除信息
-     * @param id
+     * @param id id
      */
     void delete(String id);
 

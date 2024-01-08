@@ -1,4 +1,4 @@
-package com.hospital.model.Scheduling.pojo.form;
+package com.hospital.model.scheduling.pojo.form;
 
 import com.hospital.common.pojo.form.PageForm;
 import lombok.Data;
@@ -21,5 +21,10 @@ public class SchedulingSearchForm extends PageForm {
      * 年月日
      */
     private String date;
+
+    /**
+     * 时分秒
+     */
+    private String time;
 
 }

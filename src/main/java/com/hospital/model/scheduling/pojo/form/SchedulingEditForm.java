@@ -1,4 +1,4 @@
-package com.hospital.model.Scheduling.pojo.form;
+package com.hospital.model.scheduling.pojo.form;
 
 import lombok.Data;
 

@@ -22,20 +22,28 @@ public interface PatientInfoIService extends IService<PatientInfoEntity> {
 
     /**
      * 新增患者
-     * @param patientInfoAddForm
+     * @param patientInfoAddForm 接参对象
+     * @return boolean
      */
     boolean insert(PatientInfoAddForm patientInfoAddForm);
 
     /**
      * 逻辑删除患者
-     * @param id
+     * @param id id
      * @return boolean
      */
     boolean delete(String id);
 
     /**
+     * 查询患者详情
+     * @param patientId patientId
+     * @return PatientInfoEntity
+     */
+    PatientInfoEntity info(String patientId);
+
+    /**
      * 患者信息修改
-     * @param patientInfoEditForm
+     * @param patientInfoEditForm 接参对象
      * @return boolean
      */
     boolean edit(PatientInfoEditForm patientInfoEditForm);

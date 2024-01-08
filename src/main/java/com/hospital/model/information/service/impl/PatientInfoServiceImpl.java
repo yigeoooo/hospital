@@ -84,6 +84,14 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoDao, PatientI
     }
 
     @Override
+    public PatientInfoEntity info(String patientId) {
+        //条件构造
+        QueryWrapper<PatientInfoEntity> query = new QueryWrapper<>();
+        query.eq("patient_id", patientId);
+        return patientInfoDao.selectOne(query);
+    }
+
+    @Override
     public boolean edit(PatientInfoEditForm patientInfoEditForm) {
         //封装对象
         PatientInfoEntity patientInfoEntity = new PatientInfoEntity();

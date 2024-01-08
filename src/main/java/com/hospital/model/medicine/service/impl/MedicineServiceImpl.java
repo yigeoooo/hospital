@@ -72,8 +72,7 @@ public class MedicineServiceImpl extends ServiceImpl<MedicineDao, MedicineEntity
         if (StringUtils.isNotEmpty(medicineName)) {
             query.eq("medicine_name", medicineName);
         }
-        Page<MedicineEntity> medicineEntityPage = medicineDao.selectPage(page, query);
-        return medicineEntityPage;
+        return medicineDao.selectPage(page, query);
     }
 
     @Transactional(rollbackFor = RuntimeException.class)

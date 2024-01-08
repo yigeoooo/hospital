@@ -1,4 +1,4 @@
-package com.hospital.model.Scheduling.pojo.entity;
+package com.hospital.model.scheduling.pojo.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -9,7 +9,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
 * 排班表实体类

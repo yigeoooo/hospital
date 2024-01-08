@@ -1,16 +1,14 @@
-package com.hospital.model.Scheduling.controller;
+package com.hospital.model.scheduling.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hospital.common.utils.ResultInfo;
-import com.hospital.model.Scheduling.pojo.entity.SchedulingEntity;
-import com.hospital.model.Scheduling.pojo.form.SchedulingEditForm;
-import com.hospital.model.Scheduling.pojo.form.SchedulingListForm;
-import com.hospital.model.Scheduling.pojo.form.SchedulingSearchForm;
-import com.hospital.model.Scheduling.service.SchedulingIService;
+import com.hospital.model.scheduling.pojo.entity.SchedulingEntity;
+import com.hospital.model.scheduling.pojo.form.SchedulingEditForm;
+import com.hospital.model.scheduling.pojo.form.SchedulingListForm;
+import com.hospital.model.scheduling.pojo.form.SchedulingSearchForm;
+import com.hospital.model.scheduling.service.SchedulingIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-
 
 /**
  * 排班表交互层
@@ -36,13 +34,23 @@ public class SchedulingController {
     }
 
     /**
-     * 分页条件查询排班计划
+     * 分页条件查询排班计划(过滤医生姓名)
      * @param schedulingSearchForm 接参对象
      * @return ResultInfo
      */
     @PostMapping("/page")
     public ResultInfo<Page<SchedulingEntity>> page(@RequestBody SchedulingSearchForm schedulingSearchForm) {
         return ResultInfo.build(schedulingIService.page(schedulingSearchForm));
+    }
+
+    /**
+     * 分页条件查询排班计划(不过滤医生姓名)
+     * @param schedulingSearchForm 接参对象
+     * @return ResultInfo
+     */
+    @PostMapping("/getPage")
+    public ResultInfo<Page<SchedulingEntity>> getPage(@RequestBody SchedulingSearchForm schedulingSearchForm) {
+        return ResultInfo.build(schedulingIService.getPage(schedulingSearchForm));
     }
 
     /**

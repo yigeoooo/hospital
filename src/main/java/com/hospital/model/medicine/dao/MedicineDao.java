@@ -19,6 +19,7 @@ public interface MedicineDao extends BaseMapper<MedicineEntity> {
      * 药品数量入库
      * @param id id
      * @param count 数量
+     * @param now 当前日期
      * @return Integer
      */
     Integer updateCount(@Param("id") String id,

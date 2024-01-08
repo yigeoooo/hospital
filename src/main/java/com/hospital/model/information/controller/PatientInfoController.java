@@ -23,7 +23,7 @@ public class PatientInfoController {
 
     /**
      * 患者信息分页查询
-     * @param patientInfoForm
+     * @param patientInfoForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/page", method = RequestMethod.POST)
@@ -33,7 +33,7 @@ public class PatientInfoController {
 
     /**
      * 新增患者
-     * @param patientInfoAddForm
+     * @param patientInfoAddForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
@@ -43,7 +43,7 @@ public class PatientInfoController {
 
     /**
      * 逻辑删除患者
-     * @param id
+     * @param id id
      * @return ResultInfo
      */
     @GetMapping("/delete/{id}")
@@ -52,8 +52,18 @@ public class PatientInfoController {
     }
 
     /**
+     * 根据patientI查询详情
+     * @param patientId patientId
+     * @return ResultInfo
+     */
+    @GetMapping("/info/{patientId}")
+    public ResultInfo<PatientInfoEntity> info(@PathVariable("patientId") String patientId) {
+        return ResultInfo.build(patientInfoIService.info(patientId));
+    }
+
+    /**
      * 修改患者信息
-     * @param patientInfoEditForm
+     * @param patientInfoEditForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)

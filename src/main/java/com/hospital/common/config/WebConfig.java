@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     /**
      * 处理前后端跨域问题
-     * @param registry
+     * @param registry 注册器
      */
     @Override
         public void addCorsMappings(CorsRegistry registry) {

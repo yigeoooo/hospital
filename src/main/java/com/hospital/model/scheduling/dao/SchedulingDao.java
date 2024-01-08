@@ -1,8 +1,9 @@
-package com.hospital.model.Scheduling.dao;
+package com.hospital.model.scheduling.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.hospital.model.Scheduling.pojo.entity.SchedulingEntity;
+import com.hospital.model.scheduling.pojo.entity.SchedulingEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 排班表实体类
@@ -11,4 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SchedulingDao extends BaseMapper<SchedulingEntity> {
+
+    int updateCount(@Param("id") String id);
+
 }

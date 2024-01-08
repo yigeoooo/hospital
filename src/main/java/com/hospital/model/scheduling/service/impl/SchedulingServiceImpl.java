@@ -1,15 +1,15 @@
-package com.hospital.model.Scheduling.service.impl;
+package com.hospital.model.scheduling.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.hospital.model.Scheduling.dao.SchedulingDao;
-import com.hospital.model.Scheduling.pojo.entity.SchedulingEntity;
-import com.hospital.model.Scheduling.pojo.form.SchedulingEditForm;
-import com.hospital.model.Scheduling.pojo.form.SchedulingForm;
-import com.hospital.model.Scheduling.pojo.form.SchedulingListForm;
-import com.hospital.model.Scheduling.pojo.form.SchedulingSearchForm;
-import com.hospital.model.Scheduling.service.SchedulingIService;
+import com.hospital.model.scheduling.dao.SchedulingDao;
+import com.hospital.model.scheduling.pojo.entity.SchedulingEntity;
+import com.hospital.model.scheduling.pojo.form.SchedulingEditForm;
+import com.hospital.model.scheduling.pojo.form.SchedulingForm;
+import com.hospital.model.scheduling.pojo.form.SchedulingListForm;
+import com.hospital.model.scheduling.pojo.form.SchedulingSearchForm;
+import com.hospital.model.scheduling.service.SchedulingIService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,6 +61,26 @@ public class SchedulingServiceImpl extends ServiceImpl<SchedulingDao, Scheduling
         String date = schedulingSearchForm.getDate();
         if (StringUtils.isNotEmpty(date)) {
             query.eq("date", date);
+        }
+        return schedulingDao.selectPage(page, query);
+    }
+
+    @Override
+    public Page<SchedulingEntity> getPage(SchedulingSearchForm schedulingSearchForm) {
+        //构筑分页信息
+        Page<SchedulingEntity> page = new Page<>();
+        page.setCurrent(schedulingSearchForm.getPage());
+        page.setSize(schedulingSearchForm.getSize());
+        //拼接查询信息
+        QueryWrapper<SchedulingEntity> query = new QueryWrapper<>();
+        String doctorName = schedulingSearchForm.getDoctorName();
+        String date = schedulingSearchForm.getDate();
+        String time = schedulingSearchForm.getTime();
+        if (StringUtils.isNotEmpty(date)) {
+            query.eq("date", date);
+        }
+        if (StringUtils.isNotEmpty(doctorName)) {
+            query.eq("doctor_name", doctorName);
         }
         return schedulingDao.selectPage(page, query);
     }
