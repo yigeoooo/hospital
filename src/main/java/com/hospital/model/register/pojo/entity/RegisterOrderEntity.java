@@ -43,6 +43,10 @@ public class RegisterOrderEntity {
      */
     private String patientName;
     /**
+     * 患者性别
+     */
+    private String patientGender;
+    /**
      * 患者身份证号
      */
     private String idCard;

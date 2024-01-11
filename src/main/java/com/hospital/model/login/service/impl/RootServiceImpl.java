@@ -36,8 +36,7 @@ public class RootServiceImpl extends ServiceImpl<RootDao, UserEntity> implements
             query.eq("root_id", rootId);
         }
         query.eq("is_deleted", "0");
-        Page<UserEntity> pages = rootDao.page(page, query);
-        return pages;
+        return rootDao.page(page, query);
     }
 
     @Override

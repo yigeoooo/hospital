@@ -2,6 +2,7 @@ package com.hospital.model.medicine.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hospital.common.utils.ResultInfo;
+import com.hospital.model.medicine.pojo.dto.MedicineDto;
 import com.hospital.model.medicine.pojo.entity.MedicineEntity;
 import com.hospital.model.medicine.pojo.form.MedicineAddForm;
 import com.hospital.model.medicine.pojo.form.MedicineForm;
@@ -9,6 +10,8 @@ import com.hospital.model.medicine.pojo.form.MedicineUpdateForm;
 import com.hospital.model.medicine.service.MedicineIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 药品前端交互层
@@ -83,12 +86,21 @@ public class MedicineController {
     /**
      * 更新medicine信息
      * @param medicineUpdateForm 接惨对象
-     * @return
+     * @return ResultInfo
      */
     @PatchMapping("/update")
     public ResultInfo<Boolean> update(@RequestBody MedicineUpdateForm medicineUpdateForm) {
         medicineIService.update(medicineUpdateForm);
         return ResultInfo.build(true);
+    }
+
+    /**
+     * 获取药品种类
+     * @return ResultInfo
+     */
+    @GetMapping("/type")
+    public ResultInfo<List<MedicineDto>> getMedicineList(String medicineName) {
+        return ResultInfo.build(medicineIService.getMedicineList(medicineName));
     }
 
 }

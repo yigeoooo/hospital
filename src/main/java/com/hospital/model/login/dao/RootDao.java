@@ -16,6 +16,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface RootDao extends BaseMapper<UserEntity> {
 
-    Page page(Page<UserEntity> page, @Param("ew") QueryWrapper<UserEntity> ew);
+    Page<UserEntity> page(Page<UserEntity> page, @Param("ew") QueryWrapper<UserEntity> ew);
 
 }

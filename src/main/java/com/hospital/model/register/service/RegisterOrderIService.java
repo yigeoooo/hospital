@@ -28,6 +28,13 @@ public interface RegisterOrderIService extends IService<RegisterOrderEntity> {
     Page<RegisterOrderEntity> page(RegisterOrderForm registerOrderForm);
 
     /**
+     * 查询特定医生挂号信息
+     * @param registerOrderForm 接惨对象
+     * @return Page
+     */
+    Page<RegisterOrderEntity> pages(RegisterOrderForm registerOrderForm);
+
+    /**
      * 退号接口
      * @param registerOrderResetForm 接参对象
      */

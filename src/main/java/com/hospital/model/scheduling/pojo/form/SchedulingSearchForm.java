@@ -9,10 +9,13 @@ import lombok.EqualsAndHashCode;
  * @author psh
  * @since date 2024/1/7
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
 public class SchedulingSearchForm extends PageForm {
 
+    /**
+     * doctorId
+     */
+    private String doctorId;
     /**
      * 医生姓名
      */

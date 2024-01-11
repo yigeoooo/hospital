@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author yigeoooo
+ * 挂号交互层
+ * @author psh
  * @since date 2024/1/8
  */
 @RestController
@@ -44,7 +45,7 @@ public class RegisterOrderController {
 
     /**
      * 条件分页查询
-     * @param registerOrderForm 接惨对象
+     * @param registerOrderForm 接参对象
      * @return ResultInfo
      */
     @PostMapping("/page")
@@ -53,7 +54,17 @@ public class RegisterOrderController {
     }
 
     /**
-     * 腿好处理
+     * 条件分页查询
+     * @param registerOrderForm 接惨对象
+     * @return ResultInfo
+     */
+    @PostMapping("/pages")
+    public ResultInfo<Page<RegisterOrderEntity>> pages(@RequestBody RegisterOrderForm registerOrderForm) {
+        return ResultInfo.build(registerOrderIService.pages(registerOrderForm));
+    }
+
+    /**
+     * 退号处理
      * @param registerOrderResetForm 接参对象
      * @return ResultInfo
      */

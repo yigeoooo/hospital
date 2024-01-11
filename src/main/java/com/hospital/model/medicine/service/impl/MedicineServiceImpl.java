@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hospital.model.medicine.dao.MedicineDao;
 import com.hospital.model.medicine.dao.MedicineInfoDao;
+import com.hospital.model.medicine.pojo.dto.MedicineDto;
 import com.hospital.model.medicine.pojo.entity.MedicineEntity;
 import com.hospital.model.medicine.pojo.entity.MedicineInfoEntity;
 import com.hospital.model.medicine.pojo.form.MedicineAddForm;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 药品服务层实现类
@@ -114,5 +116,10 @@ public class MedicineServiceImpl extends ServiceImpl<MedicineDao, MedicineEntity
                 .medicineName(medicineUpdateForm.getMedicineName())
                 .build();
         medicineDao.updateById(medicine);
+    }
+
+    @Override
+    public List<MedicineDto> getMedicineList(String medicineName) {
+        return medicineDao.getMedicineList(medicineName);
     }
 }

@@ -16,7 +16,13 @@
         update scheduling
         set
         count = count + 1
-        where doctor_name = #{doctorName} and date = #{date}
+        where doctor_name = #{doctorName} and date = #{date} and time = #{time}
     </update>
+
+    <select id="getPages" resultType="com.hospital.model.scheduling.pojo.entity.SchedulingEntity">
+        select *
+        from scheduling
+        ${ew.customSqlSegment}
+    </select>
 
 </mapper>

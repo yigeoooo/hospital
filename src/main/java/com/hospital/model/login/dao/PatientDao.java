@@ -15,5 +15,5 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface PatientDao extends BaseMapper<PatientEntity> {
 
-    Page page(Page<PatientEntity> page, @Param("ew") QueryWrapper<PatientEntity> ew);
+    Page<PatientEntity> page(Page<PatientEntity> page, @Param("ew") QueryWrapper<PatientEntity> ew);
 }

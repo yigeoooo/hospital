@@ -42,6 +42,10 @@ public class RegisterOrderAddForm {
      */
     private String idCard;
     /**
+     * 患者性别
+     */
+    private String patientGender;
+    /**
      * 患者联系电话
      */
     private String phoneNumber;

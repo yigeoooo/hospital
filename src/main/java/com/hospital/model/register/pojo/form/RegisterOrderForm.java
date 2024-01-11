@@ -11,6 +11,12 @@ import lombok.Data;
 @Data
 public class RegisterOrderForm extends PageForm {
 
+    private String patientId;
+
+    private String doctorId;
+
     private String date;
+
+    private boolean status;
 
 }

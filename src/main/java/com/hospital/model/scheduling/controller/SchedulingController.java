@@ -48,9 +48,19 @@ public class SchedulingController {
      * @param schedulingSearchForm 接参对象
      * @return ResultInfo
      */
-    @PostMapping("/getPage")
+        @PostMapping("/getPage")
     public ResultInfo<Page<SchedulingEntity>> getPage(@RequestBody SchedulingSearchForm schedulingSearchForm) {
         return ResultInfo.build(schedulingIService.getPage(schedulingSearchForm));
+    }
+
+    /**
+     * 根据医生姓名分页条件查询排班计划
+     * @param schedulingSearchForm 接参对象
+     * @return ResultInfo
+     */
+    @PostMapping("/SchedulingPage")
+    public ResultInfo<Page<SchedulingEntity>> getDoctorPage(@RequestBody SchedulingSearchForm schedulingSearchForm) {
+        return ResultInfo.build(schedulingIService.getSchedulingPage(schedulingSearchForm));
     }
 
     /**

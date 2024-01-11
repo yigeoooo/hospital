@@ -2,10 +2,13 @@ package com.hospital.model.medicine.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hospital.model.medicine.pojo.dto.MedicineDto;
 import com.hospital.model.medicine.pojo.entity.MedicineEntity;
 import com.hospital.model.medicine.pojo.form.MedicineAddForm;
 import com.hospital.model.medicine.pojo.form.MedicineForm;
 import com.hospital.model.medicine.pojo.form.MedicineUpdateForm;
+
+import java.util.List;
 
 /**
  * 药品服务层接口
@@ -45,5 +48,11 @@ public interface MedicineIService extends IService<MedicineEntity> {
      * @param medicineUpdateForm 接参对象
      */
     void update(MedicineUpdateForm medicineUpdateForm);
+
+    /**
+     * 查询药品种类
+     * @return List
+     */
+    List<MedicineDto> getMedicineList(String medicineName);
 
 }

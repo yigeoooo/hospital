@@ -5,6 +5,12 @@
 
 <mapper namespace="com.hospital.model.medicine.dao.MedicineDao">
 
+    <resultMap id="medicineDtoMap" type="com.hospital.model.medicine.pojo.dto.MedicineDto">
+        <id column="medicine_id" property="medicineId"/>
+        <result column="medicine_name" property="medicineName"/>
+        <result column="count" property="count"/>
+    </resultMap>
+
     <update id="updateCount">
         update medicine
         set
@@ -12,5 +18,11 @@
         update_time = #{now}
         where id = #{id}
     </update>
+
+    <select id="getMedicineList" resultMap="medicineDtoMap">
+        select medicine_id,medicine_name,count
+        from medicine
+        where is_deleted = '0' and medicine_name like concat('%',#{medicineName},'%')
+    </select>
 
 </mapper>

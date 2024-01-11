@@ -35,6 +35,12 @@ public interface SchedulingIService extends IService<SchedulingEntity> {
      */
     Page<SchedulingEntity> getPage(SchedulingSearchForm schedulingSearchForm);
 
+    /**
+     * 根据医生查询排班计划
+     * @param schedulingSearchForm 接参数对象
+     * @return Page
+     */
+    Page<SchedulingEntity> getSchedulingPage(SchedulingSearchForm schedulingSearchForm);
 
     /**
      * 修改排班计划

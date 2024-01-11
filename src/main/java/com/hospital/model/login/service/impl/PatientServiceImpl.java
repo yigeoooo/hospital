@@ -49,8 +49,7 @@ public class PatientServiceImpl extends ServiceImpl<PatientDao, PatientEntity> i
             query.eq("patient_id", doctorId);
         }
         query.eq("is_deleted", "0");
-        Page pages = patientDao.page(page, query);
-        return pages;
+        return patientDao.page(page, query);
     }
 
     @Override

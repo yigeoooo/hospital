@@ -3,6 +3,8 @@ package com.hospital.model.scheduling.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hospital.model.information.dao.DoctorInfoDao;
+import com.hospital.model.information.pojo.entity.DoctorInfoEntity;
 import com.hospital.model.scheduling.dao.SchedulingDao;
 import com.hospital.model.scheduling.pojo.entity.SchedulingEntity;
 import com.hospital.model.scheduling.pojo.form.SchedulingEditForm;
@@ -31,6 +33,9 @@ public class SchedulingServiceImpl extends ServiceImpl<SchedulingDao, Scheduling
 
     @Autowired
     private SchedulingIService schedulingIService;
+
+    @Autowired
+    private DoctorInfoDao doctorInfoDao;
 
     @Override
     public void insert(SchedulingListForm schedulingListForm) {
@@ -83,6 +88,33 @@ public class SchedulingServiceImpl extends ServiceImpl<SchedulingDao, Scheduling
             query.eq("doctor_name", doctorName);
         }
         return schedulingDao.selectPage(page, query);
+    }
+
+    @Override
+    public Page<SchedulingEntity> getSchedulingPage(SchedulingSearchForm schedulingSearchForm) {
+        //查询医生姓名
+        String doctorId = schedulingSearchForm.getDoctorId();
+        QueryWrapper<DoctorInfoEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("doctor_id", doctorId);
+        boolean exists = doctorInfoDao.exists(queryWrapper);
+        if (!exists) {
+            throw new RuntimeException("查无此医生信息！");
+        }
+        DoctorInfoEntity doctorInfoEntity = doctorInfoDao.selectOne(queryWrapper);
+        String doctorName = doctorInfoEntity.getDoctorName();
+        //查询该医生排班计划
+        QueryWrapper<SchedulingEntity> query = new QueryWrapper<>();
+        query.eq("doctor_name", doctorName);
+        //条件拼接
+        String date = schedulingSearchForm.getDate();
+        if (StringUtils.isNotEmpty(date)) {
+            query.eq("date", date);
+        }
+        query.eq("is_deleted", "0");
+        Page<SchedulingEntity> page = new Page<>();
+        page.setCurrent(schedulingSearchForm.getPage());
+        page.setSize(schedulingSearchForm.getSize());
+        return schedulingDao.getPages(page, query);
     }
 
     @Override

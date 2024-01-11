@@ -16,4 +16,6 @@ public class RegisterOrderResetForm {
 
     private String date;
 
+    private String time;
+
 }
