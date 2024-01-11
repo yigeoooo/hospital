@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.hospital.model.register.pojo.entity.RegisterOrderEntity;
 import com.hospital.model.register.pojo.form.RegisterOrderAddForm;
 import com.hospital.model.register.pojo.form.RegisterOrderForm;
+import com.hospital.model.register.pojo.form.RegisterOrderResetForm;
 
 /**
  * 挂号订单表服务层接口
@@ -25,4 +26,11 @@ public interface RegisterOrderIService extends IService<RegisterOrderEntity> {
      * @return Page
      */
     Page<RegisterOrderEntity> page(RegisterOrderForm registerOrderForm);
+
+    /**
+     * 退号接口
+     * @param registerOrderResetForm 接参对象
+     */
+    void reset(RegisterOrderResetForm registerOrderResetForm);
+
 }

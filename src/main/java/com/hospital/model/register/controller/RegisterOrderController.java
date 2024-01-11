@@ -5,6 +5,7 @@ import com.hospital.common.utils.ResultInfo;
 import com.hospital.model.register.pojo.entity.RegisterOrderEntity;
 import com.hospital.model.register.pojo.form.RegisterOrderAddForm;
 import com.hospital.model.register.pojo.form.RegisterOrderForm;
+import com.hospital.model.register.pojo.form.RegisterOrderResetForm;
 import com.hospital.model.register.service.RegisterOrderIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,17 @@ public class RegisterOrderController {
     @PostMapping("/page")
     public ResultInfo<Page<RegisterOrderEntity>> page(@RequestBody RegisterOrderForm registerOrderForm) {
         return ResultInfo.build(registerOrderIService.page(registerOrderForm));
+    }
+
+    /**
+     * 腿好处理
+     * @param registerOrderResetForm 接参对象
+     * @return ResultInfo
+     */
+    @PostMapping("/reset")
+    public ResultInfo<Boolean> reset(@RequestBody RegisterOrderResetForm registerOrderResetForm) {
+        registerOrderIService.reset(registerOrderResetForm);
+        return ResultInfo.build(true);
     }
 
 }

@@ -7,6 +7,7 @@ import com.hospital.model.register.dao.RegisterOrderDao;
 import com.hospital.model.register.pojo.entity.RegisterOrderEntity;
 import com.hospital.model.register.pojo.form.RegisterOrderAddForm;
 import com.hospital.model.register.pojo.form.RegisterOrderForm;
+import com.hospital.model.register.pojo.form.RegisterOrderResetForm;
 import com.hospital.model.register.service.RegisterOrderIService;
 import com.hospital.model.scheduling.dao.SchedulingDao;
 import com.hospital.model.scheduling.pojo.entity.SchedulingEntity;
@@ -68,5 +69,15 @@ public class RegisterOrderServiceImpl extends ServiceImpl<RegisterOrderDao, Regi
             query.eq("date", date);
         }
         return registerOrderDao.selectPage(page, query);
+    }
+    @Transactional
+    @Override
+    public void reset(RegisterOrderResetForm registerOrderResetForm) {
+        //根据id逻辑删除挂号信息
+        registerOrderDao.deleteById(registerOrderResetForm.getId());
+        //当天医生可挂号数加一
+        String doctorName = registerOrderResetForm.getDoctorName();
+        String date = registerOrderResetForm.getDate();
+        schedulingDao.reset(doctorName, date);
     }
 }

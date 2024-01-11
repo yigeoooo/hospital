@@ -15,4 +15,6 @@ public interface SchedulingDao extends BaseMapper<SchedulingEntity> {
 
     int updateCount(@Param("id") String id);
 
+    int reset(@Param("doctorName") String doctorName, @Param("date") String date);
+
 }

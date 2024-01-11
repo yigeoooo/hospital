@@ -3,6 +3,7 @@ package com.hospital.model.register.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hospital.model.register.pojo.entity.RegisterOrderEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 患者挂号表持久层
@@ -11,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface RegisterOrderDao extends BaseMapper<RegisterOrderEntity> {
+
 }

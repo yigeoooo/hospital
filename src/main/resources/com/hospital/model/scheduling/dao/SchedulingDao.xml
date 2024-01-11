@@ -12,4 +12,11 @@
         where id = #{id}
     </update>
 
+    <update id="reset">
+        update scheduling
+        set
+        count = count + 1
+        where doctor_name = #{doctorName} and date = #{date}
+    </update>
+
 </mapper>
