@@ -19,6 +19,14 @@
         where id = #{id}
     </update>
 
+    <update id="deleteCount">
+        update medicine
+        set
+        count = count - #{count},
+        update_time = #{now}
+        where medicine_name = #{medicineName}
+    </update>
+
     <select id="getMedicineList" resultMap="medicineDtoMap">
         select medicine_id,medicine_name,count
         from medicine

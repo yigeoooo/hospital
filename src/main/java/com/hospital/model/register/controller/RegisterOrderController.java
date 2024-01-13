@@ -2,6 +2,7 @@ package com.hospital.model.register.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hospital.common.utils.ResultInfo;
+import com.hospital.model.register.pojo.dto.RegisterInfoDto;
 import com.hospital.model.register.pojo.entity.RegisterOrderEntity;
 import com.hospital.model.register.pojo.form.RegisterOrderAddForm;
 import com.hospital.model.register.pojo.form.RegisterOrderForm;
@@ -9,10 +10,7 @@ import com.hospital.model.register.pojo.form.RegisterOrderResetForm;
 import com.hospital.model.register.service.RegisterOrderIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 挂号交互层
@@ -72,6 +70,16 @@ public class RegisterOrderController {
     public ResultInfo<Boolean> reset(@RequestBody RegisterOrderResetForm registerOrderResetForm) {
         registerOrderIService.reset(registerOrderResetForm);
         return ResultInfo.build(true);
+    }
+
+    /**
+     * 查询病例详情
+     * @param id id
+     * @return ResultInfo
+     */
+    @GetMapping("/info/{id}")
+    public ResultInfo<RegisterInfoDto> info(@PathVariable("id") String id) {
+        return ResultInfo.build(registerOrderIService.info(id));
     }
 
 }

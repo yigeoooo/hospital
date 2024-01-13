@@ -5,10 +5,37 @@
 
 <mapper namespace="com.hospital.model.register.dao.RegisterOrderDao">
 
+    <resultMap id="RegisterInfoMap" type="com.hospital.model.register.pojo.dto.RegisterInfoDto">
+        <id column="id" property="id"/>
+        <result column="doctor_name" property="doctorName"/>
+        <result column="patient_id" property="patientId"/>
+        <result column="patient_name" property="patientName"/>
+        <result column="patient_gender" property="patientGender"/>
+        <result column="id_card" property="idCard"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="date" property="date"/>
+        <result column="advice" property="advice"/>
+        <collection property="list" ofType="com.hospital.model.register.pojo.dto.RegisterInfoListDto">
+            <id column="medicine_name" property="medicineName"/>
+            <result column="count" property="count"/>
+        </collection>
+    </resultMap>
+
     <select id="getPage" resultType="com.hospital.model.register.pojo.entity.RegisterOrderEntity">
         select *
         from register_order
         ${ew.customSqlSegment}
+    </select>
+
+    <select id="info" parameterType="java.lang.String" resultMap="RegisterInfoMap">
+        select
+        ro.id,ro.doctor_name,ro.patient_id,ro.patient_name,
+        ro.patient_gender,ro.id_card,ro.phone_number,ro.date,
+        a.advice,ma.medicine_name,ma.count
+        from register_order ro
+        INNER JOIN advice a on ro.id = a.order_id
+        INNER JOIN medicine_advice ma on ro.id = ma.order_id
+        where ro.id = #{id} and ro.status = '1' and ro.is_deleted = '0';
     </select>
 
 </mapper>

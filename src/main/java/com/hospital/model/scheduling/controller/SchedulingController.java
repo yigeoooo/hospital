@@ -48,7 +48,7 @@ public class SchedulingController {
      * @param schedulingSearchForm 接参对象
      * @return ResultInfo
      */
-        @PostMapping("/getPage")
+    @PostMapping("/getPage")
     public ResultInfo<Page<SchedulingEntity>> getPage(@RequestBody SchedulingSearchForm schedulingSearchForm) {
         return ResultInfo.build(schedulingIService.getPage(schedulingSearchForm));
     }

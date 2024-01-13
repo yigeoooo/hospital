@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hospital.model.information.dao.DoctorInfoDao;
 import com.hospital.model.information.pojo.entity.DoctorInfoEntity;
 import com.hospital.model.register.dao.RegisterOrderDao;
+import com.hospital.model.register.pojo.dto.RegisterInfoDto;
 import com.hospital.model.register.pojo.entity.RegisterOrderEntity;
 import com.hospital.model.register.pojo.form.RegisterOrderAddForm;
 import com.hospital.model.register.pojo.form.RegisterOrderForm;
@@ -119,5 +120,10 @@ public class RegisterOrderServiceImpl extends ServiceImpl<RegisterOrderDao, Regi
         String date = registerOrderResetForm.getDate();
         String time = registerOrderResetForm.getTime();
         schedulingDao.reset(doctorName, date, time);
+    }
+
+    @Override
+    public RegisterInfoDto info(String id) {
+        return registerOrderDao.info(id);
     }
 }

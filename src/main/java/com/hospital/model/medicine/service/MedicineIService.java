@@ -52,6 +52,7 @@ public interface MedicineIService extends IService<MedicineEntity> {
     /**
      * 查询药品种类
      * @return List
+     * @param medicineName name
      */
     List<MedicineDto> getMedicineList(String medicineName);
 

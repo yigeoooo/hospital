@@ -26,7 +26,8 @@ public class LoginController {
 
     /**
      * 登录接口，前端根据接口地址访问，方法为POST
-     * @return
+     * @return boolean
+     * @param baseForm 接参对象
      */
     //@RequestMapping,映射路径，/login是方法路径，method指访问方法，如get方法，post方法等
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -34,9 +35,8 @@ public class LoginController {
         //@RequestBody,专门用于post请求，将前端传递的值封装成UserEntity对象，注意前端传值得属性必须要和
         //UserEntity得属性名一摸一样，否咋无法接收到值
         log.info("入参：{}", baseForm);
-        boolean bo = loginService.login(baseForm);
         //返回给前端判断值
-        return bo;
+        return loginService.login(baseForm);
     }
     //测试镜像1.0.0
     @RequestMapping(value = "/hello", method = RequestMethod.GET)

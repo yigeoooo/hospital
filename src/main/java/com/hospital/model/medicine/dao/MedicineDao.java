@@ -31,7 +31,19 @@ public interface MedicineDao extends BaseMapper<MedicineEntity> {
     /**'
      * 查询药品种类
      * @return List
+     * @param medicineName name
      */
     List<MedicineDto> getMedicineList(@Param("medicineName") String medicineName);
+
+    /**
+     * 更新药品数量信息
+     * @param medicineName 药品名称
+     * @param count 数量
+     * @param now 当前时间
+     * @return Integer
+     */
+    Integer deleteCount(@Param("medicineName") String medicineName,
+                        @Param("count") Long count,
+                        @Param("now") LocalDate now);
 
 }

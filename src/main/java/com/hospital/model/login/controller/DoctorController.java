@@ -23,7 +23,7 @@ public class DoctorController {
 
     /**
      * 医生登录接口
-     * @param baseForm
+     * @param baseForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -33,7 +33,7 @@ public class DoctorController {
 
     /**
      * 分页条件查询
-     * @param doctorForm
+     * @param doctorForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/page", method = RequestMethod.POST)
@@ -44,7 +44,7 @@ public class DoctorController {
 
     /**
      * 修改状态
-     * @param doctorForm
+     * @param doctorForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/status", method = RequestMethod.POST)
@@ -55,7 +55,7 @@ public class DoctorController {
 
     /**
      * 逻辑删除root账户
-     * @param id
+     * @param id id
      * @return ResultInfo
      */
     @GetMapping("/delete/{id}")
@@ -66,7 +66,7 @@ public class DoctorController {
 
     /**
      * 新增管理员账户
-     * @param doctorForm
+     * @param doctorForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
@@ -76,7 +76,7 @@ public class DoctorController {
 
     /**
      * 修改root账户信息
-     * @param doctorForm
+     * @param doctorForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)

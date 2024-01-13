@@ -2,6 +2,7 @@ package com.hospital.model.register.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hospital.model.register.pojo.dto.RegisterInfoDto;
 import com.hospital.model.register.pojo.entity.RegisterOrderEntity;
 import com.hospital.model.register.pojo.form.RegisterOrderAddForm;
 import com.hospital.model.register.pojo.form.RegisterOrderForm;
@@ -39,5 +40,12 @@ public interface RegisterOrderIService extends IService<RegisterOrderEntity> {
      * @param registerOrderResetForm 接参对象
      */
     void reset(RegisterOrderResetForm registerOrderResetForm);
+
+    /**
+     * 查询病例详情
+     * @param id id;
+     * @return RegisterInfoDto dto对象
+     */
+    RegisterInfoDto info(String id);
 
 }

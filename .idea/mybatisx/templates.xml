@@ -39,8 +39,8 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="Scheduling" />
-                  <option name="tableName" value="scheduling" />
+                  <option name="className" value="MedicineAdvice" />
+                  <option name="tableName" value="medicine_advice" />
                 </TableUIInfo>
               </list>
             </option>

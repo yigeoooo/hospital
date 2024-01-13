@@ -22,54 +22,54 @@ public class RootController {
 
     /**
      * 分页条件查询
-     * @param rootForm
+     * @param rootForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/page", method = RequestMethod.POST)
-    public ResultInfo page(@RequestBody RootForm rootForm) {
+    public ResultInfo<Page<UserEntity>> page(@RequestBody RootForm rootForm) {
         Page<UserEntity> page = rootIService.page(rootForm);
         return ResultInfo.build(page);
     }
 
     /**
      * 修改状态
-     * @param rootForm
+     * @param rootForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/status", method = RequestMethod.POST)
-    public ResultInfo status(@RequestBody RootForm rootForm) {
+    public ResultInfo<Boolean> status(@RequestBody RootForm rootForm) {
         rootIService.changeStatus(rootForm);
         return ResultInfo.build(true);
     }
 
     /**
      * 逻辑删除root账户
-     * @param id
-     * @return
+     * @param id id
+     * @return ResultInfo
      */
     @GetMapping("/delete/{id}")
-    public ResultInfo delete(@PathVariable("id") String id) {
+    public ResultInfo<Boolean> delete(@PathVariable("id") String id) {
         boolean bo = rootIService.deleted(id);
         return ResultInfo.build(bo);
     }
 
     /**
      * 新增管理员账户
-     * @param rootForm
+     * @param rootForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public ResultInfo insert(@RequestBody RootForm rootForm) {
+    public ResultInfo<Boolean> insert(@RequestBody RootForm rootForm) {
         return ResultInfo.build(rootIService.insert(rootForm));
     }
 
     /**
      * 修改root账户信息
-     * @param rootForm
+     * @param rootForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ResultInfo edit(@RequestBody RootForm rootForm) {
+    public ResultInfo<Boolean> edit(@RequestBody RootForm rootForm) {
         return ResultInfo.build(rootIService.edit(rootForm));
     }
 
