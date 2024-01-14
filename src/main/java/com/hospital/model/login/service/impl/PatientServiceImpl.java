@@ -4,13 +4,17 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hospital.common.pojo.form.BaseForm;
+import com.hospital.model.information.dao.PatientInfoDao;
+import com.hospital.model.information.pojo.entity.PatientInfoEntity;
 import com.hospital.model.login.dao.PatientDao;
 import com.hospital.model.login.pojo.entity.PatientEntity;
 import com.hospital.model.login.pojo.form.PatientForm;
+import com.hospital.model.login.pojo.form.PatientRegisterForm;
 import com.hospital.model.login.service.PatientIService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 患者登录服务层
@@ -23,11 +27,15 @@ public class PatientServiceImpl extends ServiceImpl<PatientDao, PatientEntity> i
     @Autowired
     private PatientDao patientDao;
 
+    @Autowired
+    private PatientInfoDao patientInfoDao;
+
     @Override
     public boolean login(BaseForm baseForm) {
         QueryWrapper<PatientEntity> query = new QueryWrapper<>();
         query.eq("patient_id", baseForm.getId())
-                .eq("password", baseForm.getPassword());
+                .eq("password", baseForm.getPassword())
+                .eq("status", "1");
         Long count = patientDao.selectCount(query);
         if (count == 0) {
             return false;
@@ -37,8 +45,8 @@ public class PatientServiceImpl extends ServiceImpl<PatientDao, PatientEntity> i
 
     @Override
     public Page<PatientEntity> page(PatientForm patientForm) {
-        Page<PatientEntity> page = new Page(patientForm.getPage(), patientForm.getSize());
-        QueryWrapper<PatientEntity> query = new QueryWrapper();
+        Page<PatientEntity> page = new Page<>(patientForm.getPage(), patientForm.getSize());
+        QueryWrapper<PatientEntity> query = new QueryWrapper<>();
         String id = patientForm.getId();
         String doctorId = patientForm.getPatientId();
         //参数检验，拼接过滤查询条件
@@ -100,5 +108,38 @@ public class PatientServiceImpl extends ServiceImpl<PatientDao, PatientEntity> i
             return false;
         }
         return true;
+    }
+
+    @Override
+    @Transactional
+    public void register(PatientRegisterForm patientRegisterForm) {
+        String patientId = patientRegisterForm.getPatientId();
+        String password = patientRegisterForm.getPassword();
+        //验证patientId是否存在
+        QueryWrapper<PatientEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("patient_id", patientId);
+        Long count = patientDao.selectCount(queryWrapper);
+        if (count != 0) {
+            throw new RuntimeException("账户ID已经存在！");
+        }
+        //插入账户密码表
+        PatientEntity patientEntity = PatientEntity
+                .builder()
+                .patientId(patientId)
+                .password(password)
+                .status(true)
+                .build();
+        patientDao.insert(patientEntity);
+        //插入患者信息表
+        PatientInfoEntity patientInfoEntity = PatientInfoEntity
+                .builder()
+                .patientId(patientId)
+                .patientAge(patientRegisterForm.getPatientAge())
+                .patientGender(patientRegisterForm.getPatientGender())
+                .patientName(patientRegisterForm.getPatientName())
+                .idCard(patientRegisterForm.getIdCard())
+                .phoneNumber(patientRegisterForm.getPhoneNumber())
+                .build();
+        patientInfoDao.insert(patientInfoEntity);
     }
 }

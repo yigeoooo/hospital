@@ -3,7 +3,10 @@ package com.hospital.model.login.pojo.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 患者登录实体类
@@ -11,6 +14,9 @@ import lombok.Data;
  * @since date 2023/12/30
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @TableName("patient")
 public class PatientEntity {
 

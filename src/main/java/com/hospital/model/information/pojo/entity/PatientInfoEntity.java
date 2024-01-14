@@ -3,7 +3,10 @@ package com.hospital.model.information.pojo.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -13,6 +16,9 @@ import java.time.LocalDate;
  * @since date 2024/1/3
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @TableName("patient_info")
 public class PatientInfoEntity {
 
@@ -31,7 +37,10 @@ public class PatientInfoEntity {
      * 患者姓名
      */
     private String patientName;
-
+    /**
+     * 患者年齡
+     */
+    private String patientAge;
     /**
      * 患者性别
      */

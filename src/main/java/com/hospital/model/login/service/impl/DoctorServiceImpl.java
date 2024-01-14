@@ -29,7 +29,8 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorDao, DoctorEntity> impl
         String password = baseForm.getPassword();
         QueryWrapper<DoctorEntity> query = new QueryWrapper<>();
         query.eq("doctor_id", doctorId)
-                .eq("password", password);
+                .eq("password", password)
+                .eq("status", "1");
         Long count = doctorDao.selectCount(query);
         if (count == 0) {
             return false;
@@ -39,8 +40,8 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorDao, DoctorEntity> impl
 
     @Override
     public Page<DoctorEntity> page(DoctorForm doctorForm) {
-        Page<DoctorEntity> page = new Page(doctorForm.getPage(), doctorForm.getSize());
-        QueryWrapper<DoctorEntity> query = new QueryWrapper();
+        Page<DoctorEntity> page = new Page<>(doctorForm.getPage(), doctorForm.getSize());
+        QueryWrapper<DoctorEntity> query = new QueryWrapper<>();
         String id = doctorForm.getId();
         String doctorId = doctorForm.getDoctorId();
         //参数检验，拼接过滤查询条件

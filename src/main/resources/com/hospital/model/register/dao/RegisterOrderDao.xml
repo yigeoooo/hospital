@@ -11,6 +11,7 @@
         <result column="patient_id" property="patientId"/>
         <result column="patient_name" property="patientName"/>
         <result column="patient_gender" property="patientGender"/>
+        <result column="patient_age" property="patientAge"/>
         <result column="id_card" property="idCard"/>
         <result column="phone_number" property="phoneNumber"/>
         <result column="date" property="date"/>
@@ -30,7 +31,7 @@
     <select id="info" parameterType="java.lang.String" resultMap="RegisterInfoMap">
         select
         ro.id,ro.doctor_name,ro.patient_id,ro.patient_name,
-        ro.patient_gender,ro.id_card,ro.phone_number,ro.date,
+        ro.patient_gender,ro.patient_age,ro.id_card,ro.phone_number,ro.date,
         a.advice,ma.medicine_name,ma.count
         from register_order ro
         INNER JOIN advice a on ro.id = a.order_id

@@ -16,41 +16,41 @@ public interface DoctorIService extends IService<DoctorEntity> {
 
     /**
      * 医生登录
-     * @param baseForm
+     * @param baseForm 接参对象
      * @return boolean
      */
     boolean doctorLogin(BaseForm baseForm);
 
     /**
      * 分页条件查询
-     * @param doctorForm
+     * @param doctorForm 接参对象
      * @return Page
      */
     Page<DoctorEntity> page(DoctorForm doctorForm);
 
     /**
      * 修改状态
-     * @param doctorForm
+     * @param doctorForm 接参对象
      */
     void changeStatus(DoctorForm doctorForm);
 
 
     /**
-     * 逻辑删除root账号
+     * 逻辑删除doctor账号 接参对象
      * @param id
      */
     boolean deleted(String id);
 
     /**
-     * 新增root账户
-     * @param doctorForm
+     * 新增doctor账户
+     * @param doctorForm 接参对象
      * @return boolean
      */
     boolean insert(DoctorForm doctorForm);
 
     /**
-     * 修改root账户信息
-     * @param doctorForm
+     * 修改doctor账户信息
+     * @param doctorForm 接参对象
      * @return boolean
      */
     boolean edit(DoctorForm doctorForm);

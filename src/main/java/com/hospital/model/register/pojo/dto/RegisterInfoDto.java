@@ -23,6 +23,8 @@ public class RegisterInfoDto {
 
     private String patientGender;
 
+    private String patientAge;
+
     private String idCard;
 
     private String phoneNumber;

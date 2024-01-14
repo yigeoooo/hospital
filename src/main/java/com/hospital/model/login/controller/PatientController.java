@@ -5,9 +5,12 @@ import com.hospital.common.pojo.form.BaseForm;
 import com.hospital.common.utils.ResultInfo;
 import com.hospital.model.login.pojo.entity.PatientEntity;
 import com.hospital.model.login.pojo.form.PatientForm;
+import com.hospital.model.login.pojo.form.PatientRegisterForm;
 import com.hospital.model.login.service.PatientIService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 /**
  * 患者登录角层
@@ -16,11 +19,17 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("saas/patient")
+@Slf4j
 public class PatientController {
 
     @Autowired
     private PatientIService patientIService;
 
+    /**
+     * 患者登录
+     * @param baseForm 接参对象
+     * @return ResultInfo
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultInfo<Boolean> login(@RequestBody BaseForm baseForm) {
         return ResultInfo.build(patientIService.login(baseForm));
@@ -49,7 +58,7 @@ public class PatientController {
     }
 
     /**
-     * 逻辑删除root账户
+     * 逻辑删除患者账户
      * @param id id
      * @return ResultInfo
      */
@@ -60,7 +69,7 @@ public class PatientController {
     }
 
     /**
-     * 新增管理员账户
+     * 新增患者账户
      * @param PatientForm 接参对象
      * @return ResultInfo
      */
@@ -70,7 +79,7 @@ public class PatientController {
     }
 
     /**
-     * 修改root账户信息
+     * 修改患者账户信息
      * @param PatientForm 接参对象
      * @return ResultInfo
      */
@@ -86,5 +95,21 @@ public class PatientController {
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public ResultInfo<Long> count() {
         return ResultInfo.build(patientIService.count());
+    }
+
+    /**
+     * 患者注册
+     * @param patientRegisterForm 接参对象
+     * @return ResultInfo
+     */
+    @PostMapping("/register")
+    public ResultInfo<Boolean> register(@RequestBody PatientRegisterForm patientRegisterForm) {
+        try {
+            patientIService.register(patientRegisterForm);
+            return ResultInfo.build(true);
+        } catch (Exception e) {
+            log.error(e.toString());
+            return ResultInfo.build(false);
+        }
     }
 }

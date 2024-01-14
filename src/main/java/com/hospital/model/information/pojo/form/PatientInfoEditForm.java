@@ -25,6 +25,10 @@ public class PatientInfoEditForm {
      */
     private String patientName;
 
+    /**
+     * 患者年龄
+     */
+    private String patientAge;
 
     /**
      * 身份证号

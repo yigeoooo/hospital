@@ -12,19 +12,23 @@ import lombok.Data;
 public class PatientInfoAddForm {
 
     /**
-     * 医生登录id
+     * 患者登录id
      */
     private String patientId;
 
     /**
-     * 医生姓名
+     * 患者姓名
      */
     private String patientName;
 
     /**
-     * 医生性别
+     * 患者性别
      */
     private String patientGender;
+    /**
+     * 患者年龄
+     */
+    private String patientAge;
 
     /**
      * 身份证号

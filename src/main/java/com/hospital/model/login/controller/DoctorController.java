@@ -27,7 +27,7 @@ public class DoctorController {
      * @return ResultInfo
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResultInfo login(@RequestBody BaseForm baseForm) {
+    public ResultInfo<Boolean> login(@RequestBody BaseForm baseForm) {
         return ResultInfo.build(doctorIService.doctorLogin(baseForm));
     }
 
@@ -37,7 +37,7 @@ public class DoctorController {
      * @return ResultInfo
      */
     @RequestMapping(value = "/page", method = RequestMethod.POST)
-    public ResultInfo page(@RequestBody DoctorForm doctorForm) {
+    public ResultInfo<Page<DoctorEntity>> page(@RequestBody DoctorForm doctorForm) {
         Page<DoctorEntity> page = doctorIService.page(doctorForm);
         return ResultInfo.build(page);
     }
@@ -48,7 +48,7 @@ public class DoctorController {
      * @return ResultInfo
      */
     @RequestMapping(value = "/status", method = RequestMethod.POST)
-    public ResultInfo status(@RequestBody DoctorForm doctorForm) {
+    public ResultInfo<Boolean> status(@RequestBody DoctorForm doctorForm) {
         doctorIService.changeStatus(doctorForm);
         return ResultInfo.build(true);
     }
@@ -59,18 +59,18 @@ public class DoctorController {
      * @return ResultInfo
      */
     @GetMapping("/delete/{id}")
-    public ResultInfo delete(@PathVariable("id") String id) {
+    public ResultInfo<Boolean> delete(@PathVariable("id") String id) {
         boolean bo = doctorIService.deleted(id);
         return ResultInfo.build(bo);
     }
 
     /**
-     * 新增管理员账户
+     * 新增医生账户
      * @param doctorForm 接参对象
      * @return ResultInfo
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public ResultInfo insert(@RequestBody DoctorForm doctorForm) {
+    public ResultInfo<Boolean> insert(@RequestBody DoctorForm doctorForm) {
         return ResultInfo.build(doctorIService.insert(doctorForm));
     }
 
@@ -80,7 +80,7 @@ public class DoctorController {
      * @return ResultInfo
      */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ResultInfo edit(@RequestBody DoctorForm doctorForm) {
+    public ResultInfo<Boolean> edit(@RequestBody DoctorForm doctorForm) {
         return ResultInfo.build(doctorIService.edit(doctorForm));
     }
 
