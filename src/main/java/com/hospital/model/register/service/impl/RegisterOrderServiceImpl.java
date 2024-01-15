@@ -59,6 +59,7 @@ public class RegisterOrderServiceImpl extends ServiceImpl<RegisterOrderDao, Regi
                 .time(registerOrderAddForm.getTime())
                 .patientGender(registerOrderAddForm.getPatientGender())
                 .idCard(registerOrderAddForm.getIdCard())
+                .patientAge(registerOrderAddForm.getPatientAge())
                 .patientName(registerOrderAddForm.getPatientName())
                 .phoneNumber(registerOrderAddForm.getPhoneNumber())
                 .build();

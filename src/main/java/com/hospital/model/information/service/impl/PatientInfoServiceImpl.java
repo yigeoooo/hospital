@@ -70,6 +70,7 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoDao, PatientI
         patientInfoEntity.setPatientGender(patientInfoAddForm.getPatientGender());
         patientInfoEntity.setIdCard(patientInfoAddForm.getIdCard());
         patientInfoEntity.setPhoneNumber(patientInfoAddForm.getPhoneNumber());
+        patientInfoEntity.setPatientAge(patientInfoAddForm.getPatientAge());
         patientInfoDao.insert(patientInfoEntity);
         return true;
     }
