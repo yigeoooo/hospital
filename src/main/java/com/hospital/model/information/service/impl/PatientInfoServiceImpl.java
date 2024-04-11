@@ -15,6 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 患者信息服务层实现类
  * @author psh
@@ -42,6 +44,20 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoDao, PatientI
             query.eq("patient_name", patientInfoForm.getPatientName());
         }
         Page<PatientInfoEntity> page = patientInfoDao.selectPage(pages, query);
+        List<PatientInfoEntity> records = page.getRecords();
+        for (PatientInfoEntity record : records) {
+            String phoneNumber = record.getPhoneNumber();
+            String substring = phoneNumber.substring(0, 3);
+            String substring1 = phoneNumber.substring(phoneNumber.length() - 4);
+            String s = substring + "*****" + substring1;
+            record.setPhoneNumber(s);
+
+            String idCard = record.getIdCard();
+            String str = idCard.substring(0, 3);
+            String substring2 = idCard.substring(idCard.length() - 4);
+            String s1 = str + "************" + substring2;
+            record.setIdCard(s1);
+        }
         return page;
     }
 
