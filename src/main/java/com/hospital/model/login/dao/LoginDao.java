@@ -1,5 +1,6 @@
 package com.hospital.model.login.dao;
 
+import com.hospital.model.login.pojo.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -14,5 +15,8 @@ public interface LoginDao {
     //@select 指查询
     @Select("select count(*) from root where root_id = #{rootId} and password = #{password} and status = '1' and is_deleted = '0'")
     Integer login(@Param("rootId") String userId, @Param("password") String password);
+
+    @Select("select * from root where root_id = #{rootId}")
+    UserEntity getInfo(String rootId);
 
 }

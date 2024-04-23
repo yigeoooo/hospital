@@ -37,4 +37,6 @@ public class UserEntity {
      * 状态，1开启，0关闭
      */
     private boolean status;
+
+    private String isAdmin;
 }

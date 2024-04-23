@@ -1,6 +1,7 @@
 package com.hospital.model.login.service;
 
 import com.hospital.common.pojo.form.BaseForm;
+import com.hospital.model.login.pojo.entity.UserEntity;
 
 /**
  * user类service曾接口
@@ -8,5 +9,5 @@ import com.hospital.common.pojo.form.BaseForm;
  */
 public interface LoginService {
 
-    boolean login(BaseForm baseForm);
+    UserEntity login(BaseForm baseForm);
 }
